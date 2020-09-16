@@ -1,5 +1,4 @@
 <!--index.wxml-->
-<view class="container">
-首页
-<text class="icon-shoucang1"></text>
+<view class="wxyg_index">
+  <SearchInput></SearchInput>
 </view>
