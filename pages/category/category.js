@@ -1,18 +1,33 @@
 // pages/category/category.js
+
+import { request } from "../../request/index.js";
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    leftMenuList: [], // 左侧的菜单数据
+    rightContent: [] // 右侧的商品数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCates();
+  },
 
+  // 获取分类数据
+  async getCates() {
+    let result = await request({
+      url: "https://api-hmugo-web.itheima.net/api/public/v1/categories"
+    });
+    result = result.data.message;
+    
+    this.setData({ leftMenuList: result.map(v => v.cat_name) });
+    this.setData({ rightContent: result[0].children });
   },
 
   /**
