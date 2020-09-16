@@ -9,7 +9,8 @@ Page({
    */
   data: {
     leftMenuList: [], // 左侧的菜单数据
-    rightContent: [] // 右侧的商品数据
+    rightContent: [], // 右侧的商品数据
+    currentIndex: 0 // 选中的菜单索引
   },
 
   /**

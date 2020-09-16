@@ -10,8 +10,13 @@ page, view, text, swiper, swiper-item, image, navigator {
 
 /* 微信小程序默认支持CSS预处理 */
 page {
+  height: 100%;
   /* 主题色 */
   --themeColor: #eb4450;
   /* 统一字体大小，假设设计稿是375px */
   font-size: 28rpx;
+}
+
+image {
+  width: 100%;
 }
