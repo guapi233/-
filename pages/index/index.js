@@ -8,16 +8,17 @@ import {
 
 Page({
   data: {
-    // 轮播图数组
-    swiperList: [],
-    // 分类列表
-    cateList: []
+    swiperList: [], // 轮播图数组
+    cateList: [], // 分类列表
+    floorList: [] // 楼层列表
   },
   onLoad: async function () {
     // 获取轮播图数据
     await this.getSwiperList();
     // 获取分类数据
     await this.getCateList();
+    // 获取楼层数据
+    await this.getFloorList();
 
   },
   // 获取轮播方法
@@ -36,6 +37,15 @@ Page({
     });
     this.setData({
       cateList: result.data.message
+    });
+  },
+  // 获取楼层方法
+  async getFloorList() {
+    let result = await request({
+      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata'
+    });
+    this.setData({
+      floorList: result.data.message
     });
   }
 })
