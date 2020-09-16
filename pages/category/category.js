@@ -10,8 +10,11 @@ Page({
   data: {
     leftMenuList: [], // 左侧的菜单数据
     rightContent: [], // 右侧的商品数据
-    currentIndex: 0 // 选中的菜单索引
+    currentIndex: 0, // 选中的菜单索引
+    rightScrollTop: 0, // 右侧滚动条滚动距离
   },
+  // 分类数据
+  categoryData: [],
 
   /**
    * 生命周期函数--监听页面加载
@@ -25,10 +28,21 @@ Page({
     let result = await request({
       url: "https://api-hmugo-web.itheima.net/api/public/v1/categories"
     });
-    result = result.data.message;
+    this.categoryData = result.data.message;
     
-    this.setData({ leftMenuList: result.map(v => v.cat_name) });
-    this.setData({ rightContent: result[0].children });
+    this.setData({ leftMenuList: this.categoryData.map(v => v.cat_name) });
+    this.setData({ rightContent: this.categoryData[0].children });
+  },
+  // 左侧菜单的点击事件
+  handleItemTap(e) {
+    const { index } = e.currentTarget.dataset;
+    
+    // 切换左侧选中菜单索引
+    this.setData({ currentIndex: index });
+    // 将右侧滚动条置顶
+    this.setData({ rightScrollTop: 0 });
+    // 切换右侧内容
+    this.setData({ rightContent: this.categoryData[index].children });
   },
 
   /**
