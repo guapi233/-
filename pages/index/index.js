@@ -24,7 +24,7 @@ Page({
   // 获取轮播方法
   async getSwiperList() {
     let result = await request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata'
+      url: '/swiperdata'
     });
     this.setData({
       swiperList: result.data.message
@@ -33,7 +33,7 @@ Page({
   // 获取轮播方法
   async getCateList() {
     let result = await request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/catitems'
+      url: '/catitems'
     });
     this.setData({
       cateList: result.data.message
@@ -42,7 +42,7 @@ Page({
   // 获取楼层方法
   async getFloorList() {
     let result = await request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata'
+      url: '/floordata'
     });
     this.setData({
       floorList: result.data.message

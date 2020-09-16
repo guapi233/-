@@ -26,7 +26,7 @@ Page({
   // 获取分类数据
   async getCates() {
     let result = await request({
-      url: "https://api-hmugo-web.itheima.net/api/public/v1/categories"
+      url: "/categories"
     });
     this.categoryData = result.data.message;
     
