@@ -1,4 +1,8 @@
 /**index.wxss**/
+.wxyg_index {
+  padding-bottom: 20rpx;
+}
+
 .index_swiper swiper {
   width: 750rpx;
   height: 340rpx;
@@ -37,11 +41,15 @@
 .index_floor .floor_group .floor_list navigator {
   float: left;
   width: 33.33%;
+  border-left: 10rpx solid #fff;
+}
+
+.index_floor .floor_group .floor_list navigator:first-child {
+  height: 55.45422414vw;
 }
 
 .index_floor .floor_group .floor_list navigator:nth-last-child(-n+4) {
   height: 27.72711207vw;
-  border-left: 10rpx solid #fff;
 }
 
 .floor_list navigator:nth-child(2) {
