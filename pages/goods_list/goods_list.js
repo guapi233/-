@@ -1,4 +1,7 @@
 // pages/goods_list/goods_list.js
+
+import { request } from "../../request/index.js";
+
 Page({
 
   /**
@@ -21,8 +24,31 @@ Page({
         value: "价格",
         isActive: false
       }
-    ]
+    ],
+    goodsList: []
   },
+  // 数据请求参数
+  queryParams: {
+    query: "",
+    cid: "",
+    pagenum: 1,
+    pagesize: 10
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+   onLoad: async function (options) {
+    this.queryParams.cid = options.cid;
+
+    await this.getGoodsList();
+  },
+
+  // 获取商品列表数据
+  async getGoodsList() {
+    let result = await request({url: "/goods/search", data: this.queryParams});
+    this.setData({ goodsList: result.data.message.goods });
+  }, 
 
   // Tabs change事件处理
   handleTabsItemChange(e) {
@@ -31,13 +57,6 @@ Page({
       v.id === index ?v.isActive = true :v.isActive = false;
       return v;
     }) })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
   },
 
   /**
