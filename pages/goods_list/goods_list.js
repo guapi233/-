@@ -34,6 +34,8 @@ Page({
     pagenum: 1,
     pagesize: 10
   },
+  // 总页数
+  totalPages: 1,
 
   /**
    * 生命周期函数--监听页面加载
@@ -47,7 +49,11 @@ Page({
   // 获取商品列表数据
   async getGoodsList() {
     let result = await request({url: "/goods/search", data: this.queryParams});
-    this.setData({ goodsList: result.data.message.goods });
+    
+    this.totalPages = Math.ceil(result.data.message.total / this.queryParams.pagesize);
+    console.log(this.totalPages)
+
+    this.setData({ goodsList: [...this.data.goodsList, ...result.data.message.goods] });
   }, 
 
   // Tabs change事件处理
@@ -98,7 +104,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.queryParams.pagenum >= this.totalPages) {
+      wx.showToast({
+        title: '没有更多了',
+      })
+    } else {
+      this.queryParams.pagenum++;
+      this.getGoodsList();
+    }
   },
 
   /**
