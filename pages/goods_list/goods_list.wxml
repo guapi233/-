@@ -1,2 +1,11 @@
 <!--pages/goods_list/goods_list.wxml-->
-<text>pages/goods_list/goods_list.wxml</text>
+<view class="wxyg_goods_list">
+  <!-- 搜索框 -->
+  <SearchInput></SearchInput>
+  <!-- Tabs -->
+  <Tabs tabs="{{ tabs }}" bindchange="handleTabsItemChange">
+    <block wx:if="{{ tabs[0].isActive }}">0</block>
+    <block wx:elif="{{ tabs[1].isActive }}">1</block>
+    <block wx:elif="{{ tabs[2].isActive }}">2</block>
+  </Tabs>
+</view>
