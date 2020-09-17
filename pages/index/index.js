@@ -24,7 +24,7 @@ Page({
   // 获取轮播方法
   async getSwiperList() {
     let result = await request({
-      url: '/swiperdata'
+      url: '/home/swiperdata'
     });
     this.setData({
       swiperList: result.data.message
@@ -33,7 +33,7 @@ Page({
   // 获取轮播方法
   async getCateList() {
     let result = await request({
-      url: '/catitems'
+      url: '/home/catitems'
     });
     this.setData({
       cateList: result.data.message
@@ -42,7 +42,7 @@ Page({
   // 获取楼层方法
   async getFloorList() {
     let result = await request({
-      url: '/floordata'
+      url: '/home/floordata'
     });
     this.setData({
       floorList: result.data.message
