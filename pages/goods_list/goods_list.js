@@ -96,8 +96,15 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh: async function () {
+    // 重置商品列表数据
+    this.setData({ goodsList: [] });
+    // 重置页码
+    this.queryParams.pagenum = 1;
+    // 重新发送请求
+    await this.getGoodsList();
+    // 手动关闭加载动画
+    wx.stopPullDownRefresh();
   },
 
   /**
