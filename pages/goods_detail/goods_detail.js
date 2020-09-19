@@ -20,9 +20,16 @@ Page({
 
   // 获取商品详情数据
   async getGoodsDetail(goods_id) {
-    const result = await request({ url: "/goods/detail", data: { goods_id } });
-
-    this.setData({ goodsDetail: result.data.message });
+    let result = await request({ url: "/goods/detail", data: { goods_id } });
+    result = result.data.message;
+    this.setData({ goodsDetail: {
+      goods_name: result.goods_name,
+      goods_id: result.goods_id,
+      goods_price: result.goods_price,
+      // iphone部分手机不支持webp图片格式， 最好找后台修改
+      goods_introduce: result.goods_introduce.replace(/\.webp/g, ".jpg"),
+      pics: result.pics
+    } });
   },
 
   /**
