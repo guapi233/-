@@ -9,7 +9,8 @@ Page({
    */
   data: {
     address: {},
-    cart: []
+    cart: [],
+    allChecked: false
   },
 
   /**
@@ -57,7 +58,11 @@ Page({
     // 设置收货信息
     this.setData({ address: wx.getStorageSync('address') });
     // 设置购物车信息
-    this.setData({ cart: wx.getStorageSync('cart') });
+    this.setData({ cart: wx.getStorageSync('cart') || [] });
+
+    // 计算是否全选
+    this.setData({ allChecked: this.data.cart.length 
+      ?this.data.cart.every(v => v.checked) :false });
   },
 
   /**
