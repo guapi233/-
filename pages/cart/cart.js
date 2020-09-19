@@ -1,4 +1,7 @@
 // pages/cart/cart.js
+
+import { getSetting, chooseAddress, openSetting } from "../../utils/asyncWx.js";
+
 Page({
 
   /**
@@ -16,34 +19,26 @@ Page({
   },
 
   // 点击收货地址
-  handleChooseAddress() {
-    // 获取权限状态
-    wx.getSetting({
-      success: (result) => {
-        // 获取权限状态
-        const scopeAddress = result.authSetting["scope.address"];
+  async handleChooseAddress() {
+    try {
+      // 获取权限状态
+      let res1 = await getSetting();
 
-        if (scopeAddress || scopeAddress === undefined) {
-          wx.chooseAddress({
-            success: (result1) => {
-              console.log(result1)
-            },
-          })
-        } else {
-          // 用户 以前拒绝过授予权限，先引导用户打开授予页面
-          wx.openSetting({
-            success: (result2) => {
-              wx.chooseAddress({
-                success: (result3) => {
-                  console.log(result3)
-                },
-              })
-            }
-          })
-        }
+      let scopeAddress = res1.authSetting["scope.address"];
+
+      // 判断权限状态
+      if (scopeAddress === false) { 
+        // 用户 以前拒绝过授予权限，先引导用户打开授予页面
+        await openSetting();
       }
-    })
-    
+      
+      let address = await chooseAddress();
+      
+      // 将收货地址存储到缓存中
+      wx.setStorageSync('address', address)
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   /**
