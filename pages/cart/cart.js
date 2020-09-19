@@ -60,7 +60,24 @@ Page({
     // 设置收货信息
     this.setData({ address: wx.getStorageSync('address') });
     // 设置购物车信息
-    this.setData({ cart: wx.getStorageSync('cart') || [] });
+    this.setCart(wx.getStorageSync('cart') || []);
+  },
+  // 商品选中change
+  handleItemChange(e) {
+    const { id } = e.currentTarget.dataset;
+    let { cart } = this.data;
+    // 查找需要被修改的商品索引
+    let index = cart.findIndex(v => v.goods_id === id);
+    cart[index].checked = !cart[index].checked;
+
+    // 重新设置data与缓存
+    this.setCart(cart);
+  },
+
+  // 设置购物车状态 同时计算全选、总数量价格
+  setCart(cart) {
+    this.setData({ cart });
+    wx.setStorageSync('cart', cart);
 
     // 计算是否全选
     this.setData({ allChecked: this.data.cart.length 
