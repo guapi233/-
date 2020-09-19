@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    address: {}
   },
 
   /**
@@ -33,6 +33,7 @@ Page({
       }
       
       let address = await chooseAddress();
+      address.all = address.provinceName + address.cityName  +address.countyName + address.detailInfo ;
       
       // 将收货地址存储到缓存中
       wx.setStorageSync('address', address)
@@ -52,7 +53,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({ address: wx.getStorageSync('address') });
   },
 
   /**
