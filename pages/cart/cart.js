@@ -93,6 +93,18 @@ Page({
     this.setData({ totalPrice, totalNum });
   },
 
+  // 商品的 全选 反选
+  handleItemAllCheck() {
+    let { cart, allChecked } = this.data;
+
+    allChecked = !allChecked;
+
+    cart.forEach(v => v.checked = allChecked);
+
+    // 把修改后的设置填充回data和缓存
+    this.setCart(cart);
+  },
+ 
   /**
    * 生命周期函数--监听页面隐藏
    */
