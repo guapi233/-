@@ -17,12 +17,33 @@ Page({
 
   // 点击收货地址
   handleChooseAddress() {
-    // 获取收货地址
-    wx.chooseAddress({
+    // 获取权限状态
+    wx.getSetting({
       success: (result) => {
-        console.log(result)
-      },
+        // 获取权限状态
+        const scopeAddress = result.authSetting["scope.address"];
+
+        if (scopeAddress || scopeAddress === undefined) {
+          wx.chooseAddress({
+            success: (result1) => {
+              console.log(result1)
+            },
+          })
+        } else {
+          // 用户 以前拒绝过授予权限，先引导用户打开授予页面
+          wx.openSetting({
+            success: (result2) => {
+              wx.chooseAddress({
+                success: (result3) => {
+                  console.log(result3)
+                },
+              })
+            }
+          })
+        }
+      }
     })
+    
   },
 
   /**
