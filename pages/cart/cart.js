@@ -104,6 +104,19 @@ Page({
     // 把修改后的设置填充回data和缓存
     this.setCart(cart);
   },
+
+  // 商品数量控制
+  handleItemNumEdit(e) {
+    const { operation, id } = e.currentTarget.dataset;
+
+    let { cart } = this.data;
+
+    // 找到需要修改商品的索引 并修改
+    const index = cart.findIndex(v => v.goods_id === id);
+    cart[index].num += Number(operation);
+
+    this.setCart(cart);
+  },
  
   /**
    * 生命周期函数--监听页面隐藏
