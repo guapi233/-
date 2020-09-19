@@ -1,6 +1,6 @@
 // pages/cart/cart.js
 
-import { getSetting, chooseAddress, openSetting } from "../../utils/asyncWx.js";
+import { getSetting, chooseAddress, openSetting, showModal } from "../../utils/asyncWx.js";
 
 Page({
 
@@ -106,14 +106,30 @@ Page({
   },
 
   // 商品数量控制
-  handleItemNumEdit(e) {
+  async handleItemNumEdit(e) {
     const { operation, id } = e.currentTarget.dataset;
 
     let { cart } = this.data;
 
     // 找到需要修改商品的索引 并修改
     const index = cart.findIndex(v => v.goods_id === id);
-    cart[index].num += Number(operation);
+
+    // 判断是否需要删除
+    if (cart[index].num === 1 && operation === "-1") {
+      const res = await showModal({
+        title: "提示",
+        content: "是否要删除该商品"
+      })
+
+      if (res.confirm) {
+        cart.splice(index, 1);
+        this.setCart(cart);
+      } else if (res.cancel) {
+        // noop
+      }
+    } else {
+      cart[index].num += Number(operation);
+    }
 
     this.setCart(cart);
   },
