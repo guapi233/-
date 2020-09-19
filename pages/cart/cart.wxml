@@ -27,7 +27,7 @@
         <!-- 复选框 -->
         <view class="cart_chk_wrap">
           <checkbox-group bindchange="">
-            <checkbox></checkbox>
+            <checkbox checked="item.checked"></checkbox>
           </checkbox-group>
         </view>
         <!-- 商品图片 -->

@@ -52,7 +52,7 @@ Page({
 
     if (index === -1) {
       // 不存在 第一次添加
-      cart.push({ ...this.goodsInfo, num: 1 });
+      cart.push({ ...this.goodsInfo, num: 1, checked: true });
     } else {
       // 已经存在 执行num++
       cart[index].num++;
