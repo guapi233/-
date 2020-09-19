@@ -10,6 +10,8 @@ Page({
   data: {
     goodsDetail: {}
   },
+  // 商品信息
+  goodsInfo: {},
 
   /**
    * 生命周期函数--监听页面加载
@@ -22,6 +24,9 @@ Page({
   async getGoodsDetail(goods_id) {
     let result = await request({ url: "/goods/detail", data: { goods_id } });
     result = result.data.message;
+    
+    this.goodsInfo = result;
+
     this.setData({ goodsDetail: {
       goods_name: result.goods_name,
       goods_id: result.goods_id,
@@ -47,7 +52,7 @@ Page({
 
     if (index === -1) {
       // 不存在 第一次添加
-      cart.push({ ...this.data.goodsDetail, num: 1 });
+      cart.push({ ...this.goodsInfo, num: 1 });
     } else {
       // 已经存在 执行num++
       cart[index].num++;

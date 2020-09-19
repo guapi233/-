@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address: {}
+    address: {},
+    cart: []
   },
 
   /**
@@ -53,7 +54,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 设置收货信息
     this.setData({ address: wx.getStorageSync('address') });
+    // 设置购物车信息
+    this.setData({ cart: wx.getStorageSync('cart') });
   },
 
   /**
