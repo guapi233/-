@@ -32,6 +32,15 @@ Page({
     } });
   },
 
+  // 点击轮播图，图片预览
+  handlePreviewImage(e) {
+    wx.previewImage({
+      current: e.currentTarget.dataset.url,
+      urls: this.data.goodsDetail.pics.map(v => v.pics_mid),
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
