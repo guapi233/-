@@ -10,7 +10,9 @@ Page({
   data: {
     address: {},
     cart: [],
-    allChecked: false
+    allChecked: false,
+    totalPrice: 0,
+    totalNum: 0
   },
 
   /**
@@ -63,6 +65,15 @@ Page({
     // 计算是否全选
     this.setData({ allChecked: this.data.cart.length 
       ?this.data.cart.every(v => v.checked) :false });
+    // 计算总价格、总数量
+    let totalPrice = 0, totalNum = 0;
+    this.data.cart.forEach(item => {
+      if (item.checked) {
+        totalPrice += item.num * item.goods_price;
+        totalNum += item.num;
+      }
+    })
+    this.setData({ totalPrice, totalNum });
   },
 
   /**
