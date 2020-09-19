@@ -39,7 +39,26 @@ Page({
       urls: this.data.goodsDetail.pics.map(v => v.pics_mid),
     })
   },
+  // 加入购物车
+  handleCartAdd() {
+    let cart = wx.getStorageSync('cart') || [];
 
+    let index = cart.findIndex(v => v.goods_id === this.data.goodsDetail.goods_id);
+
+    if (index === -1) {
+      // 不存在 第一次添加
+      cart.push({ ...this.data.goodsDetail, num: 1 });
+    } else {
+      // 已经存在 执行num++
+      cart[index].num++;
+    }
+
+    wx.setStorageSync('cart', cart);
+    wx.showToast({
+      title: '加入成功',
+      mask: true
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
