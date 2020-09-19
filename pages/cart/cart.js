@@ -1,6 +1,6 @@
 // pages/cart/cart.js
 
-import { getSetting, chooseAddress, openSetting, showModal } from "../../utils/asyncWx.js";
+import { getSetting, chooseAddress, openSetting, showModal, showToast } from "../../utils/asyncWx.js";
 
 Page({
 
@@ -132,6 +132,27 @@ Page({
     }
 
     this.setCart(cart);
+  },
+
+  // 点击 结算
+  async handlePay() {
+    // 判断收货地址
+    const { address, totalNum } = this.data;
+    if (!address.userName) {
+      await showToast({ title: "您还没有选择收货地址", icon: "none" });
+      return;
+    }
+
+    // 判断有没有商品
+    if (!totalNum) {
+      await showToast({ title: "您还没有选择商品", icon: "none" });
+      return;
+    }
+
+    // 跳转至支付页面
+    wx.navigateTo({
+      url: '/pages/pay/pay',
+    })
   },
  
   /**

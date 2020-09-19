@@ -62,3 +62,20 @@ export const showModal = (obj) => {
     })
   })
 }
+
+/**
+ * promise 形式的 showToast
+ */
+export const showToast = (obj) => {
+  return new Promise((resolve, reject) => {
+    wx.showToast({
+      ...obj,
+      success: result => {
+        resolve(result);
+      },
+      fail: err => {
+        reject(err);
+      }
+    })
+  })
+}
