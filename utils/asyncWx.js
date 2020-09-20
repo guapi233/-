@@ -79,3 +79,20 @@ export const showToast = (obj) => {
     })
   })
 }
+
+/**
+ * promise 形式的 login
+ */
+export const login = (obj) => {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      ...obj,
+      success: result => {
+        resolve(result);
+      },
+      fail: err => {
+        reject(err);
+      }
+    })
+  })
+}

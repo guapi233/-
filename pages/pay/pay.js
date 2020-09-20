@@ -51,6 +51,20 @@ Page({
     })
     this.setData({ totalPrice, totalNum });
   },
+
+  // 处理点击支付按钮
+  handleOrderPay() {
+    // 1. 判断有没有缓存中有无token
+    const token = wx.getStorageSync('token');
+    if (!token) {
+      wx.navigateTo({
+        url: '/pages/auth/auth',
+      });
+      return ;
+    }
+
+    console.log("有啊")
+  },
  
   /**
    * 生命周期函数--监听页面隐藏

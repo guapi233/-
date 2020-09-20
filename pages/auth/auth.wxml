@@ -1,2 +1,7 @@
 <!--pages/auth/auth.wxml-->
-<text>pages/auth/auth.wxml</text>
+<view class="wxyg_auth">
+  <!-- 授权按钮 -->
+  <button type="primary" plain open-type="getUserInfo" bindgetuserinfo="handleUserInfo">
+    获取权限
+  </button>
+</view>
