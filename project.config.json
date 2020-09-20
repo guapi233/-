@@ -96,6 +96,12 @@
           "pathName": "pages/cart/cart",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "支付",
+          "pathName": "pages/pay/pay",
+          "scene": null
         }
       ]
     }
