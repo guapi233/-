@@ -33,6 +33,8 @@ Page({
       wx.navigateTo({
         url: '/pages/login/login',
       })
+
+      return;
     }
 
     const collectNum = wx.getStorageSync('collect').length || 0;
