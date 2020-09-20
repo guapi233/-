@@ -24,7 +24,7 @@ Page({
     // 获取缓存中的商品收藏的数组
     let collect = wx.getStorageSync('collect') || [];
     // 判断当前商品是否被收藏
-    let isCollect = collect.some(v => v.goods_id === options.goods_id);
+    let isCollect = collect.some(v => v.goods_id == options.goods_id);
 
     this.setData({ isCollect });
   },
