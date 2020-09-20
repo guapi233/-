@@ -53,7 +53,7 @@ Page({
   },
 
   // 处理点击支付按钮
-  handleOrderPay() {
+  async handleOrderPay() {
     // 1. 判断有没有缓存中有无token
     const token = wx.getStorageSync('token');
     if (!token) {
@@ -63,7 +63,18 @@ Page({
       return ;
     }
 
-    console.log("有啊")
+    // 伪造支付成功
+    await showToast({ title: "支付成功" });
+
+    // 手动删除缓存中 已经支付的商品
+    let newCart = wx.getStorageSync('cart');
+    newCart = newCart.filter(v => !v.checked);
+    wx.setStorageSync('cart', newCart);
+
+    // 跳转页面
+    wx.navigateTo({
+      url: '/pages/order/order'
+    })
   },
  
   /**
