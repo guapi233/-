@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {}
   },
 
   /**
@@ -26,7 +26,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const userInfo = wx.getStorageSync('userinfo');
 
+    if (!userInfo.nickName) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
+
+    this.setData({ userInfo });
   },
 
   /**

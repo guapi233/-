@@ -1,4 +1,13 @@
 <!--pages/user/user.wxml-->
 <view class="wxyg_user">
-  <navigator url="/pages/login/login">登录</navigator>
+  <!-- 上半部分信息 -->
+  <view class="user_info_wrap">
+    <view class="user_img_wrap">
+      <image class="user_bg" src="{{ userInfo.avatarUrl }}"></image>
+      <view class="user_info">
+        <image class="user_icon" src="{{ userInfo.avatarUrl }}"></image>
+        <view class="user_name">{{ userInfo.nickName }}</view>
+      </view>
+    </view>
+  </view>
 </view>
