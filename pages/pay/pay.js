@@ -66,6 +66,17 @@ Page({
     // 伪造支付成功
     await showToast({ title: "支付成功" });
 
+    // 将伪造商品信息存入本地缓存中
+    const fakeOrderInfo = {
+      number: "HMDD" + Date.now() + Math.floor(Math.random() * 10000),
+      price: this.data.totalPrice,
+      time: Date.now()
+    }
+
+    const orderList = wx.getStorageSync('orderlist') || [];
+    orderList.push(fakeOrderInfo);
+    wx.setStorageSync('orderlist', orderList);
+
     // 手动删除缓存中 已经支付的商品
     let newCart = wx.getStorageSync('cart');
     newCart = newCart.filter(v => !v.checked);
