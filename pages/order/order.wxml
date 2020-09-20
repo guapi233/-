@@ -1,2 +1,7 @@
 <!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<view class="wxyg_order">
+  <!-- Tabs -->
+  <Tabs tabs="{{ tabs }}" bindchange="handleTabsItemChange">
+     内容 
+  </Tabs>
+</view>
