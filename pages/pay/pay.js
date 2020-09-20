@@ -41,7 +41,7 @@ Page({
   // 设置购物车状态 同时计算全选、总数量价格
   setCart(cart) {
     this.setData({ cart });
-    wx.setStorageSync('cart', cart);
+    // wx.setStorageSync('cart', cart);
 
     // 计算总价格、总数量（onShow 中已经过滤过了）
     let totalPrice = 0, totalNum = 0;
