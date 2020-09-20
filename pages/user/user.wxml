@@ -37,15 +37,15 @@
       <view class="orders_wrap">
         <view class="order_title">我的订单</view>
         <view class="order_content">
-          <navigator url="/pages/order/order?type=1">
+          <navigator url="/pages/order/order?type=0">
             <view class="icon-ding_dan order_iconfont"></view>
             <view class="order_name">全部订单</view>
           </navigator>
-          <navigator url="/pages/order/order?type=2">
+          <navigator url="/pages/order/order?type=1">
             <view class="icon-fukuantongzhi order_iconfont"></view>
             <view class="order_name">代付款</view>
           </navigator>
-          <navigator url="/pages/order/order?type=3">
+          <navigator url="/pages/order/order?type=2">
             <view class="icon-receipt-address order_iconfont"></view>
             <view class="order_name">待收货</view>
           </navigator>

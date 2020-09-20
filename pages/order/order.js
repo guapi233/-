@@ -27,20 +27,41 @@ Page({
         isActive: false
       }
     ],
+    orderList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const { type } = options;
 
+    this.changeTitleByIndex(type);
+
+    // 获取商品列表
+    this.getOrderList();
+  },
+
+  // 获取商品列表
+  getOrderList() {
+    const orderList = wx.getStorageSync('orderlist').map(v => {
+      return { ...v, create_time_cn: (new Date(v.time).toLocaleString()) }
+    }) || [];
+
+    this.setData({ orderList });
   },
 
   // Tabs change事件处理
   handleTabsItemChange(e) {
     const { index } = e.detail;
+
+    this.changeTitleByIndex(index);
+  },
+
+  // 根据标题索引来激活选中 标题数组
+  changeTitleByIndex(index) {
     this.setData({ tabs: this.data.tabs.map(v => {
-      v.id === index ?v.isActive = true :v.isActive = false;
+      v.id == index ?v.isActive = true :v.isActive = false;
       return v;
     }) })
   },
@@ -55,8 +76,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (options) {
+    
   },
 
   /**
