@@ -19,6 +19,10 @@
   color: var(--themeColor);
 }
 
+.icon-shoucang1 {
+  color: orangered;
+}
+
 .goods_name_row {
   border-top: 5rpx solid #dedede;
   border-bottom: 5rpx solid #dedede;

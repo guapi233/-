@@ -1,6 +1,7 @@
 // pages/goods_detail/goods_detail.js
 
 import { request } from "../../request/index.js";
+import { showToast } from "../../utils/asyncWx.js";
 
 Page({
 
@@ -8,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodsDetail: {}
+    goodsDetail: {},
+    isCollect: false,
   },
   // 商品信息
   goodsInfo: {},
@@ -18,6 +20,13 @@ Page({
    */
   onLoad: function (options) {
     this.getGoodsDetail(options.goods_id);
+
+    // 获取缓存中的商品收藏的数组
+    let collect = wx.getStorageSync('collect') || [];
+    // 判断当前商品是否被收藏
+    let isCollect = collect.some(v => v.goods_id === options.goods_id);
+
+    this.setData({ isCollect });
   },
 
   // 获取商品详情数据
@@ -63,6 +72,23 @@ Page({
       title: '加入成功',
       mask: true
     })
+  },
+
+  // 点击商品收藏图标
+  handleCollect() {
+    let collect = wx.getStorageSync('collect') || [];
+    let index = collect.findIndex(v => v.goods_id === this.goodsInfo.goods_id);
+
+    if (index !== -1) {
+      collect.splice(index, 1);
+      showToast({ title: "取消成功", mask: true });
+    } else {
+      collect.push(this.goodsInfo);
+      showToast({ title: "收藏成功", mask: true });
+    }
+
+    wx.setStorageSync('collect', collect);
+    this.setData({ isCollect: !this.data.isCollect });
   },
 
   /**
