@@ -26,8 +26,16 @@ Page({
     let result = await request({
       url: '/home/swiperdata'
     });
+
+    // 遍历修改轮播跳转路径
+    let swiperList = result.data.message.map(item => {
+      item.navigator_url = "/pages/goods_detail/goods_detail?" 
+        + item.navigator_url.split("?")[1];
+      return item;
+    })
+
     this.setData({
-      swiperList: result.data.message
+      swiperList
     });
   },
   // 获取轮播方法

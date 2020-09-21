@@ -10,7 +10,7 @@
         wx:for="{{ swiperList }}"
         wx:key="goods_id"
       >
-        <navigator>
+        <navigator url="{{ item.navigator_url }}">
           <image mode="widthFix" src="{{ item.image_src }}"></image>
         </navigator>
       </swiper-item>
@@ -22,6 +22,8 @@
     <navigator
       wx:for="{{ cateList }}" 
       wx:key="name"
+      open-type="switchTab"
+      url="/pages/category/category"
     >
       <image mode="widthFix" src="{{ item.image_src }}"></image>
     </navigator>
