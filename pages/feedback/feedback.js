@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgs: [],
     tabs: [
       {
         id: 0,
@@ -17,6 +18,19 @@ Page({
         isActive: false
       },
     ],
+  },
+
+  // 点击＋号 选择图片
+  handleChooseImg() {
+    // 调用小程序内置的选择图片api
+    wx.chooseImage({
+      count: 9,
+      sizeType: ["original", "compressed"],
+      sourceType: ["album", "camera"],
+      success: result => {
+        this.setData({ imgs: [...this.data.imgs, ...result.tempFilePaths] });
+      }
+    })
   },
 
   /**
