@@ -9,14 +9,22 @@ Page({
    */
   data: {
     goods: [],
-    timer: null
+    timer: null,
+    isFocus: false,
+    inputVal: ""
   },
 
   // 输入框的值改变 触发该事件
   handleInput(e) {
     const { value } = e.detail;
 
-    if (!value.trim()) return;
+    if (!value.trim()) {
+      this.setData({ isFocus: false, goods: [] });
+      this.timer && clearTimeout(this.timer);
+      return;
+    }
+
+    this.setData({ isFocus: true });
 
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
@@ -28,6 +36,17 @@ Page({
   async qsearch(query) {
     const res = await request({ url: "/goods/qsearch", data: { query } });
     this.setData({ goods: res.data.message });
+  },
+
+  // 清空输入框
+  clean() {
+    this.setData({
+      inputVal: "",
+      goods: [],
+      isFocus: false
+    })
+
+    this.timer && clearTimeout(this.timer);
   },
 
   /**
