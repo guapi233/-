@@ -44,8 +44,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
   margin-left: 20rpx;
+  margin-top: 20rpx;
   color: #ccc;
+}
+
+.up_img_item {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
 }
 
 .form_btn_wrap {

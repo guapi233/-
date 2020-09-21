@@ -1,0 +1,30 @@
+/* components/Upiimg/Upimg.wxss */
+.del {
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  display: block;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+.up_img_wrap {
+  width: 90rpx;
+  height: 90rpx;
+  position: relative;
+}
+
+.up_img_wrap image {
+  width: 100%;
+  height: 100%;
+  border-radius: 15rpx;
+}
+
+.up_img_wrap .del {
+  position: absolute;
+  top: -15rpx;
+  right: -15rpx;
+}

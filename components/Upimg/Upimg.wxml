@@ -1,0 +1,5 @@
+<!--components/Upiimg/Upimg.wxml-->
+<view class="up_img_wrap">
+  <image src="../../icons/home.png"></image>
+  <text class="del">X</text>
+</view>

@@ -15,6 +15,9 @@
         <textarea placeholder="请描述您的问题"></textarea>
         <view class="fb_tool">
           <button>+</button>
+          <view class="up_img_item"><Upimg></Upimg></view>
+          <view class="up_img_item"><Upimg></Upimg></view>
+          <view class="up_img_item"><Upimg></Upimg></view>
         </view>
       </view>
 
