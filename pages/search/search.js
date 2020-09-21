@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods: []
+    goods: [],
+    timer: null
   },
 
   // 输入框的值改变 触发该事件
@@ -17,7 +18,10 @@ Page({
 
     if (!value.trim()) return;
 
-    this.qsearch(value);
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.qsearch(value);
+    }, 1000);
   },
 
   // 发送请求
