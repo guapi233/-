@@ -38,7 +38,7 @@ Page({
       swiperList
     });
   },
-  // 获取轮播方法
+  // 获取分类方法
   async getCateList() {
     let result = await request({
       url: '/home/catitems'
@@ -52,6 +52,15 @@ Page({
     let result = await request({
       url: '/home/floordata'
     });
+
+    // 遍历修正楼层跳转链接
+    result.data.message.forEach(item => {
+      item["product_list"].forEach(item2 => {
+        item2.navigator_url = "/pages/goods_list/goods_list?" +
+          item2.navigator_url.split("?")[1];
+      });
+    });
+
     this.setData({
       floorList: result.data.message
     });

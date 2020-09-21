@@ -41,7 +41,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
    onLoad: async function (options) {
-    this.queryParams.cid = options.cid;
+    this.queryParams.cid = options.cid || "";
+    this.queryParams.query = options.query || "";
 
     await this.getGoodsList();
   },
@@ -51,7 +52,6 @@ Page({
     let result = await request({url: "/goods/search", data: this.queryParams});
     
     this.totalPages = Math.ceil(result.data.message.total / this.queryParams.pagesize);
-    console.log(this.totalPages)
 
     this.setData({ goodsList: [...this.data.goodsList, ...result.data.message.goods] });
   }, 
