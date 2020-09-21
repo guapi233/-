@@ -33,6 +33,18 @@ Page({
     })
   },
 
+  // 点击自定义图片组件 删除
+  handleRemoveImg(e) {
+    // 点击图片的索引
+    const { index } = e.currentTarget.dataset;
+
+    let { imgs } = this.data;
+
+    // 从数组中删除元素
+    imgs.splice(index, 1);
+    this.setData({ imgs });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
