@@ -1,11 +1,29 @@
 // pages/search/search.js
+
+import { request } from "../../request/index.js";
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    goods: []
+  },
 
+  // 输入框的值改变 触发该事件
+  handleInput(e) {
+    const { value } = e.detail;
+
+    if (!value.trim()) return;
+
+    this.qsearch(value);
+  },
+
+  // 发送请求
+  async qsearch(query) {
+    const res = await request({ url: "/goods/qsearch", data: { query } });
+    this.setData({ goods: res.data.message });
   },
 
   /**
