@@ -12,7 +12,7 @@
 
       <!-- 反馈内容 -->
       <view class="fb_content">
-        <textarea placeholder="请描述您的问题"></textarea>
+        <textarea value="{{ textareaVal }}" bindinput="hanldeInput" placeholder="请描述您的问题"></textarea>
         <view class="fb_tool">
           <button bindtap="handleChooseImg">+</button>
           <view class="up_img_item"
@@ -26,7 +26,7 @@
 
       <!-- 提交 -->
       <view class="form_btn_wrap">
-        <button type="warn">
+        <button type="warn" bindtap="handleSubmit">
           提交
         </button>
       </view>

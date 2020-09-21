@@ -1,5 +1,5 @@
 <!--components/Upiimg/Upimg.wxml-->
 <view class="up_img_wrap">
-  <image src="{{ src }}"></image>
+  <image class="shower" src="{{ src }}"></image>
   <text class="del">X</text>
 </view>

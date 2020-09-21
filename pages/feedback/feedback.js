@@ -1,4 +1,7 @@
 // pages/feedback/feedback.js
+
+import { showToast } from "../../utils/asyncWx.js";
+
 Page({
 
   /**
@@ -6,6 +9,7 @@ Page({
    */
   data: {
     imgs: [],
+    textareaVal: "",
     tabs: [
       {
         id: 0,
@@ -43,6 +47,31 @@ Page({
     // 从数组中删除元素
     imgs.splice(index, 1);
     this.setData({ imgs });
+  },
+
+  // 文本域 input事件
+  hanldeInput(e) {
+    
+    const { value } = e.detail;
+
+    this.setData({ textareaVal: value });
+  },
+
+  // 处理提交
+  handleSubmit() {
+    let { textareaVal } = this.data;
+
+    if (!textareaVal.trim()) {
+      showToast({ title: "文本输入不合法", icon: "none" });
+    } else {
+      showToast({ title: "反馈成功" });
+
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1,
+        })
+      }, 1000);
+    }
   },
 
   /**
