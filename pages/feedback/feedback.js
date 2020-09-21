@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    tabs: [
+      {
+        id: 0,
+        value: "体验问题",
+        isActive: true
+      },
+      {
+        id: 1,
+        value: "商品、商家投诉",
+        isActive: false
+      },
+    ],
   },
 
   /**
@@ -14,6 +25,21 @@ Page({
   onLoad: function (options) {
 
   },
+
+    // Tabs change事件处理
+    handleTabsItemChange(e) {
+      const { index } = e.detail;
+  
+      this.changeTitleByIndex(index);
+    },
+  
+    // 根据标题索引来激活选中 标题数组
+    changeTitleByIndex(index) {
+      this.setData({ tabs: this.data.tabs.map(v => {
+        v.id == index ?v.isActive = true :v.isActive = false;
+        return v;
+      }) })
+    },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
