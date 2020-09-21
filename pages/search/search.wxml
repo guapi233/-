@@ -1,2 +1,22 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="wxyg_search">
+  <view class="search_row">
+    <input type="text" placeholder="请输入您要搜索的商品"></input>
+    <button>取消</button>
+  </view>
+
+  <view class="search_content">
+    <view class="search_item">
+      Loerem ispasdjpasi odlasdl;kja shit ,askdjasdj asdjaskijd asjdkasjd sadas
+    </view>
+    <view class="search_item">
+      Loerem ispasdjpasi odlasdl;kja shit ,askdjasdj asdjaskijd asjdkasjd sadas
+    </view>
+    <view class="search_item">
+      Loerem ispasdjpasi odlasdl;kja shit ,askdjasdj asdjaskijd asjdkasjd sadas
+    </view>
+    <view class="search_item">
+      Loerem ispasdjpasi odlasdl;kja shit ,askdjasdj asdjaskijd asjdkasjd sadas
+    </view>
+  </view>
+</view>
